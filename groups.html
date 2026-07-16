@@ -1,0 +1,55 @@
+<!-- groups.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groups - SAMBANDH</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gray-100 min-h-screen">
+
+    <nav id="global-nav"></nav>
+    <aside id="global-sidebar"></aside>
+    
+    <div class="max-w-7xl mx-auto flex">
+        <main class="flex-1 w-full sm:ml-64 px-0 sm:px-6 py-6 pb-20 sm:pb-6 mt-16 max-w-4xl fade-in">
+            
+            <!-- Create Group Section -->
+            <div class="bg-white p-6 sm:rounded-xl shadow-sm border-y sm:border border-gray-200 mb-6">
+                <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    Start a Community
+                </h2>
+                <form id="createGroupForm" class="space-y-4">
+                    <input type="text" id="gName" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none transition" placeholder="Group Name (e.g., Python Developers)">
+                    <textarea id="gDesc" rows="2" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none transition" placeholder="What is this group about?"></textarea>
+                    <div class="flex justify-end">
+                        <button type="submit" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-6 rounded-lg transition-colors">
+                            Create Group
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <h3 class="text-lg font-bold text-gray-900 mb-3 ml-4 sm:ml-0">Discover Groups</h3>
+            <div id="groups-container" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <!-- Injected via groups.js -->
+            </div>
+
+        </main>
+
+        <div class="pt-20 pr-4 mt-2">
+            <aside id="global-ads"></aside>
+        </div>
+    </div>
+
+    <nav id="global-mobile-nav"></nav>
+
+    <script src="js/db.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/groups.js"></script>
+</body>
+</html>
