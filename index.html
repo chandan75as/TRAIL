@@ -1,0 +1,50 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feed - SAMBANDH</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gray-100 min-h-screen">
+
+    <!-- Injected Layout Components -->
+    <nav id="global-nav"></nav>
+    <aside id="global-sidebar"></aside>
+    
+    <div class="max-w-7xl mx-auto flex">
+        <!-- Main Content Area: Offset by sidebar on desktop -->
+        <main class="flex-1 w-full sm:ml-64 px-0 sm:px-6 py-6 pb-20 sm:pb-6 mt-16 max-w-4xl fade-in">
+            
+            <!-- Mobile-only Create Post Prompt -->
+            <div class="bg-white p-4 sm:rounded-lg shadow-sm mb-4 flex gap-3 sm:hidden items-center border-y sm:border border-gray-200">
+                <img id="mobile-avatar" src="" class="w-10 h-10 rounded-full border border-gray-200">
+                <a href="submit-news.html" class="bg-gray-100 hover:bg-gray-200 text-gray-500 rounded-full py-2.5 px-4 w-full text-left transition text-sm">
+                    Have something to share?
+                </a>
+            </div>
+
+            <!-- Feed Container -->
+            <div id="feed-container" class="space-y-4">
+                <!-- Posts will be injected here via JS -->
+            </div>
+
+        </main>
+
+        <!-- Right Side Ad Spaces -->
+        <div class="pt-20 pr-4 mt-2">
+            <aside id="global-ads"></aside>
+        </div>
+    </div>
+
+    <nav id="global-mobile-nav"></nav>
+
+    <!-- Core Scripts -->
+    <script src="js/db.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/feed.js"></script>
+</body>
+</html>
