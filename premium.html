@@ -1,0 +1,103 @@
+<!-- premium.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium - SAMBANDH</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gray-100 min-h-screen">
+
+    <nav id="global-nav"></nav>
+    <aside id="global-sidebar"></aside>
+    
+    <div class="max-w-7xl mx-auto flex">
+        <main class="flex-1 w-full sm:ml-64 px-4 sm:px-6 py-10 pb-20 mt-16 fade-in">
+            
+            <div class="max-w-2xl mx-auto">
+                <div class="text-center mb-10">
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4">Go Premium. Support SAMBANDH.</h1>
+                    <p class="text-lg text-gray-600">Unlock an ad-free experience and stand out in the community.</p>
+                </div>
+
+                <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-200 relative">
+                    <!-- Decor badge -->
+                    <div class="absolute top-0 right-0 bg-yellow-400 text-yellow-900 font-bold text-xs uppercase px-3 py-1 rounded-bl-lg">Most Popular</div>
+                    
+                    <div class="p-8 sm:p-10">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-2">SAMBANDH Plus</h2>
+                        <div class="flex items-baseline gap-2 mb-6">
+                            <span class="text-5xl font-extrabold text-gray-900">$4</span>
+                            <span class="text-gray-500 font-medium">/month</span>
+                        </div>
+
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-center gap-3 text-gray-700">
+                                <svg class="w-6 h-6 text-green-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span><strong>Ad-free experience</strong> across the entire platform</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-gray-700">
+                                <svg class="w-6 h-6 text-green-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>Exclusive <strong class="text-yellow-600">Premium Star Badge</strong> next to your name</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-gray-700">
+                                <svg class="w-6 h-6 text-green-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>Support platform maintenance and future updates</span>
+                            </li>
+                        </ul>
+
+                        <button id="upgradeBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white text-lg font-bold py-4 rounded-xl shadow-md transition-transform transform hover:scale-[1.02]">
+                            Upgrade Now (Simulate Checkout)
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <nav id="global-mobile-nav"></nav>
+
+    <script src="js/db.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/components.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = Auth.requireAuth();
+
+            if (user.isPremium) {
+                document.getElementById('upgradeBtn').textContent = "You are already Premium!";
+                document.getElementById('upgradeBtn').disabled = true;
+                document.getElementById('upgradeBtn').classList.replace('bg-blue-600', 'bg-green-600');
+                document.getElementById('upgradeBtn').classList.replace('hover:bg-blue-700', 'hover:bg-green-600');
+            } else {
+                document.getElementById('upgradeBtn').addEventListener('click', () => {
+                    const db = getDB();
+                    const dbUserIndex = db.users.findIndex(u => u.id === user.id);
+                    
+                    if(dbUserIndex !== -1) {
+                        // Update DB
+                        db.users[dbUserIndex].isPremium = true;
+                        saveDB(db);
+
+                        // Update Session by pulling the fresh user data and simulating a re-login
+                        const updatedUser = db.users[dbUserIndex];
+                        Auth.login(updatedUser.username, updatedUser.password);
+
+                        // Visual Feedback
+                        const btn = document.getElementById('upgradeBtn');
+                        btn.textContent = "Payment Successful! Redirecting...";
+                        btn.classList.replace('bg-blue-600', 'bg-green-600');
+                        
+                        setTimeout(() => {
+                            window.location.href = 'profile.html';
+                        }, 1500);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
