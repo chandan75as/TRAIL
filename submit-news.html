@@ -1,0 +1,85 @@
+<!-- submit-news.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit News - SAMBANDH</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gray-100 min-h-screen">
+
+    <nav id="global-nav"></nav>
+    <aside id="global-sidebar"></aside>
+    
+    <div class="max-w-7xl mx-auto flex">
+        <main class="flex-1 w-full sm:ml-64 px-4 sm:px-6 py-6 pb-20 sm:pb-6 mt-16 max-w-3xl fade-in">
+            
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sm:p-8">
+                <h1 class="text-2xl font-bold text-gray-900 mb-2">Create a Post</h1>
+                <p class="text-gray-500 text-sm mb-6">Share news, ideas, or discoveries. Posts are reviewed by Admins before appearing publicly.</p>
+                
+                <form id="submitPostForm" class="space-y-5">
+                    <div>
+                        <label for="postTitle" class="block text-sm font-semibold text-gray-700 mb-1">Title</label>
+                        <input type="text" id="postTitle" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" placeholder="An interesting title...">
+                    </div>
+                    
+                    <div>
+                        <label for="postContent" class="block text-sm font-semibold text-gray-700 mb-1">Content</label>
+                        <textarea id="postContent" rows="6" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" placeholder="What do you want to talk about?"></textarea>
+                    </div>
+
+                    <div id="success-msg" class="hidden bg-green-50 text-green-700 p-3 rounded-lg text-sm font-medium border border-green-200">
+                        Success! Your post has been submitted and is waiting for Admin approval. Redirecting...
+                    </div>
+
+                    <div class="flex justify-end gap-3 pt-2">
+                        <a href="index.html" class="px-5 py-2.5 text-gray-600 font-medium hover:bg-gray-100 rounded-lg transition">Cancel</a>
+                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 px-6 rounded-lg transition-colors">
+                            Submit for Review
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </main>
+    </div>
+
+    <nav id="global-mobile-nav"></nav>
+
+    <script src="js/db.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/components.js"></script>
+    <script>
+        const user = Auth.requireAuth();
+
+        document.getElementById('submitPostForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const title = document.getElementById('postTitle').value.trim();
+            const content = document.getElementById('postContent').value.trim();
+
+            if(title && content) {
+                const db = getDB();
+                db.posts.push({
+                    id: generateId('p'),
+                    authorId: user.id,
+                    authorName: user.username,
+                    title: title,
+                    content: content,
+                    status: 'pending', // Key feature: Pending by default
+                    timestamp: Date.now(),
+                    upvotes: 0
+                });
+                saveDB(db);
+
+                document.getElementById('success-msg').classList.remove('hidden');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+            }
+        });
+    </script>
+</body>
+</html>
