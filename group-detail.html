@@ -1,0 +1,56 @@
+<!-- group-detail.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group Feed - SAMBANDH</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gray-100 min-h-screen">
+
+    <nav id="global-nav"></nav>
+    <aside id="global-sidebar"></aside>
+    
+    <div class="max-w-7xl mx-auto flex">
+        <main class="flex-1 w-full sm:ml-64 px-0 sm:px-6 py-6 pb-20 sm:pb-6 mt-16 max-w-4xl fade-in">
+            
+            <a href="groups.html" class="inline-flex items-center gap-2 text-purple-600 font-medium hover:underline mb-4 ml-4 sm:ml-0">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                Back to Groups
+            </a>
+
+            <!-- Group Header -->
+            <div id="group-header" class="bg-white p-6 sm:rounded-xl shadow-sm border-y sm:border border-gray-200 mb-6 relative overflow-hidden">
+                <!-- Injected via groups.js -->
+            </div>
+
+            <!-- Post to Group Form -->
+            <div id="group-post-form-container" class="bg-white p-4 sm:rounded-xl shadow-sm border-y sm:border border-gray-200 mb-6 hidden">
+                <form id="groupPostForm">
+                    <textarea id="groupPostContent" rows="3" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none transition" placeholder="Share something with the group..."></textarea>
+                    <div class="flex justify-end mt-3">
+                        <button type="submit" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-6 rounded-lg transition-colors">
+                            Post to Group
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Group Feed -->
+            <div id="group-feed-container" class="space-y-4">
+                <!-- Posts injected via groups.js -->
+            </div>
+
+        </main>
+    </div>
+
+    <nav id="global-mobile-nav"></nav>
+
+    <script src="js/db.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/groups.js"></script>
+</body>
+</html>
