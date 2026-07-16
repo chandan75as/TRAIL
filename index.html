@@ -5,41 +5,112 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feed - SAMBANDH</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="bg-gray-100 min-h-screen">
 
-    <!-- Injected Layout Components -->
-    <nav id="global-nav"></nav>
-    <aside id="global-sidebar"></aside>
+    <!-- Top Navigation Bar -->
+    <nav id="global-nav" class="bg-white shadow-sm fixed top-0 w-full z-50 px-4 py-3 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold text-blue-600">SAMBANDH</h1>
+            <div class="hidden sm:flex gap-4">
+                <a href="#" class="text-gray-600 hover:text-blue-600">Home</a>
+                <a href="#" class="text-gray-600 hover:text-blue-600">Notifications</a>
+            </div>
+            <div class="w-8 h-8 bg-gray-300 rounded-full"></div> <!-- Profile Icon -->
+        </div>
+    </nav>
+
+    <!-- Sidebar (Visible only on Desktop) -->
+    <aside id="global-sidebar" class="hidden sm:block fixed left-0 top-[60px] w-64 h-screen bg-white border-r border-gray-200 p-4">
+        <ul class="space-y-4">
+            <li class="font-semibold text-gray-700 hover:text-blue-600 cursor-pointer">🏠 Home</li>
+            <li class="font-semibold text-gray-700 hover:text-blue-600 cursor-pointer">👤 Profile</li>
+            <li class="font-semibold text-gray-700 hover:text-blue-600 cursor-pointer">✉️ Messages</li>
+            <li class="font-semibold text-gray-700 hover:text-blue-600 cursor-pointer">⚙️ Settings</li>
+        </ul>
+    </aside>
     
-    <div class="max-w-7xl mx-auto flex">
+    <div class="max-w-7xl mx-auto flex justify-center lg:justify-between px-0 sm:px-4">
         <!-- Main Content Area: Offset by sidebar on desktop -->
-        <main class="flex-1 w-full sm:ml-64 px-0 sm:px-6 py-6 pb-20 sm:pb-6 mt-16 max-w-4xl fade-in">
+        <main class="flex-1 w-full sm:ml-64 lg:mr-72 px-0 sm:px-6 py-6 pb-20 sm:pb-6 mt-16 max-w-2xl fade-in">
             
-            <!-- Mobile-only Create Post Prompt -->
-            <div class="bg-white p-4 sm:rounded-lg shadow-sm mb-4 flex gap-3 sm:hidden items-center border-y sm:border border-gray-200">
-                <img id="mobile-avatar" src="" class="w-10 h-10 rounded-full border border-gray-200">
+            <!-- Create Post Prompt (Visible on both Mobile and Desktop now for testing) -->
+            <div class="bg-white p-4 sm:rounded-lg shadow-sm mb-4 flex gap-3 items-center border-y sm:border border-gray-200">
+                <div class="w-10 h-10 bg-gray-300 rounded-full shrink-0 border border-gray-200"></div>
                 <a href="submit-news.html" class="bg-gray-100 hover:bg-gray-200 text-gray-500 rounded-full py-2.5 px-4 w-full text-left transition text-sm">
                     Have something to share?
                 </a>
             </div>
 
-            <!-- Feed Container -->
+            <!-- Feed Container (Dummy Posts Added) -->
             <div id="feed-container" class="space-y-4">
-                <!-- Posts will be injected here via JS -->
-            </div>
+                
+                <!-- Sample Post 1 -->
+                <div class="bg-white p-4 sm:rounded-lg shadow-sm border-y sm:border border-gray-200">
+                    <div class="flex gap-3 mb-3 items-center">
+                        <div class="w-10 h-10 bg-blue-200 rounded-full"></div>
+                        <div>
+                            <h3 class="font-bold text-sm text-gray-800">Rahul Sharma</h3>
+                            <p class="text-xs text-gray-500">2 hours ago</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-700 mb-3">
+                        This is a sample post. Aapka UI ab kaisa dikh raha hai? Jab aapki JS chalegi toh yeh data database se aayega.
+                    </p>
+                    <div class="flex gap-4 text-sm text-gray-500 border-t pt-3">
+                        <button class="hover:text-blue-600">👍 Like</button>
+                        <button class="hover:text-blue-600">💬 Comment</button>
+                    </div>
+                </div>
 
+                <!-- Sample Post 2 -->
+                <div class="bg-white p-4 sm:rounded-lg shadow-sm border-y sm:border border-gray-200">
+                    <div class="flex gap-3 mb-3 items-center">
+                        <div class="w-10 h-10 bg-green-200 rounded-full"></div>
+                        <div>
+                            <h3 class="font-bold text-sm text-gray-800">Priya Singh</h3>
+                            <p class="text-xs text-gray-500">5 hours ago</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-700 mb-3">
+                        Just testing the new Sambandh feed layout using Tailwind CSS. Looks great!
+                    </p>
+                    <div class="flex gap-4 text-sm text-gray-500 border-t pt-3">
+                        <button class="hover:text-blue-600">👍 Like</button>
+                        <button class="hover:text-blue-600">💬 Comment</button>
+                    </div>
+                </div>
+
+            </div>
         </main>
 
-        <!-- Right Side Ad Spaces -->
-        <div class="pt-20 pr-4 mt-2">
-            <aside id="global-ads"></aside>
+        <!-- Right Side Ad Spaces (Visible only on Large screens) -->
+        <div class="hidden lg:block w-64 pt-20 pr-4 mt-2 fixed right-0 h-screen">
+            <aside id="global-ads" class="bg-white p-4 rounded-lg shadow-sm border border-gray-200 h-64 flex flex-col justify-center items-center text-gray-400">
+                <span class="text-sm uppercase tracking-wide">Advertisement</span>
+                <div class="mt-2 w-full h-32 bg-gray-100 rounded"></div>
+            </aside>
         </div>
     </div>
 
-    <nav id="global-mobile-nav"></nav>
+    <!-- Bottom Mobile Nav (Visible only on Mobile) -->
+    <nav id="global-mobile-nav" class="sm:hidden fixed bottom-0 w-full bg-white border-t border-gray-200 py-3 px-6 flex justify-between z-50">
+        <a href="#" class="text-blue-600 flex flex-col items-center">
+            <span class="text-xl">🏠</span>
+            <span class="text-[10px]">Home</span>
+        </a>
+        <a href="#" class="text-gray-500 flex flex-col items-center">
+            <span class="text-xl">🔍</span>
+            <span class="text-[10px]">Search</span>
+        </a>
+        <a href="#" class="text-gray-500 flex flex-col items-center">
+            <span class="text-xl">👤</span>
+            <span class="text-[10px]">Profile</span>
+        </a>
+    </nav>
 
     <!-- Core Scripts -->
     <script src="js/db.js"></script>
